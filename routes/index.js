@@ -20,14 +20,16 @@ var dummyData = {
 }
 
 
-router.get('/api/alumnos/:alumcod/:tip',
+router.get('/api/alumnos/:alumcod',
   function(req,res,next){
-      console.log(req.params);
-      res.json(dummyData);
+      var returnAlumno = dummyStore.filter(function(cAlm, i){
+        return cAlm.cuenta === req.params.alumcod;
+      });
+      res.json(returnAlumno);
   }
  );//end api
 
- router.get('/api/alumnos/all',
+ router.get('/api/alumnos/find/all',
    function(req,res,next){
        res.json(dummyStore);
    }
